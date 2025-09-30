@@ -2,6 +2,8 @@ import { Controller, Get, Post, Param, Query, Body } from '@nestjs/common';
 import { PlaygroundService } from './playground.service';
 @Controller('playground')
 export class PlaygroundController {
+    constructor(private readonly playgroundService: PlaygroundService) {}
+
     //GET http://localhost:3000/playground
     @Get()
     findAll(@Query('sort') sort: 'asc' | 'desc' = 'desc') {

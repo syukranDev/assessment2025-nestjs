@@ -4,6 +4,8 @@ import { Injectable } from '@nestjs/common';
 export class PlaygroundService {
     // function logic used by controller letak sini
     findFeatured() {
-        return 'this is featured data'
+        return {
+            message: 'this is featured data'
+        }
     }
 }
