@@ -1,6 +1,8 @@
 import { Controller, Get, Post, Param, Query, Body } from '@nestjs/common';
 import { PlaygroundService } from './playground.service';
 import { IsPositivePipe } from './pipes/is-positive.pipe';
+import { ValidationPipe } from '@nestjs/common';
+import { CreateDataDto } from './dto/create-data.dto';
 @Controller('playground')
 export class PlaygroundController {
     constructor(private readonly playgroundService: PlaygroundService) {}
@@ -21,9 +23,10 @@ export class PlaygroundController {
 
     //POST http://localhost:3000/playground
     @Post() //
-    create(@Body() body: any) {
-        console.log(body) 
-        return 'submit payload data'
+    create(@Body(ValidationPipe) input: CreateDataDto) {
+        // console.log(body) 
+        // return 'submit payload data'
+        return this.playgroundService.createNewData(input)
 
     }
 

@@ -52,13 +52,23 @@ Pipes (for data processing from client)
 -validate data at AFTER routing, before controller
 -NOTE: not same as Middleware expressjs, BEFORE routing
 
--- better place in pipes folder as injectable, so that can be export
 
 i.e, ParseIntPipe, DefaultValuePipe etc see docs
+OR create custom pipes folder as injectable, (use PipeTransfrom)
 
 =========================================================
-Pipes (for data processing from client)
+class validator for typescript DTO &&  ValidationPipe 
 =========================================================
+pros: reject invalid data with 400 error
+-validate our decorator
+- without ValidationPipe, decorator we set will be useless
+
+
+
+
+
+
+
 
 TODO learn implementation:
 CQRS - seperate write read operation

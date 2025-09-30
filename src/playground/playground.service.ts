@@ -1,5 +1,5 @@
 import { HttpException, Injectable, NotFoundException } from '@nestjs/common';
-
+import { CreateDataDto } from './dto/create-data.dto';
 @Injectable()
 export class PlaygroundService {
     // function logic used by controller letak sini
@@ -13,5 +13,9 @@ export class PlaygroundService {
 
     findDetails(id: string) {
         return `this is ${id} data (single data)`
+    }
+
+    createNewData(createDataDto: CreateDataDto) {
+        return createDataDto
     }
 }
