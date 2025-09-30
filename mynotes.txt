@@ -30,3 +30,13 @@ provider (service) - its for API logic
 nest generate service <name follow module>
 
 
+
+
+
+
+TODO learn implementation:
+CQRS - seperate write read operation
+GraphQL -
+
+
+
