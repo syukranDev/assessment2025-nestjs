@@ -6,6 +6,10 @@ npm i -g @nestjs/cli
 --creat new project
 nest new assesment2025-nestjs
 
+// nestjs flow normally
+1) add module
+2) add controller
+3) add api logic
 
 -- crewte new modules via cli
 -- each module will have it ows decorators
@@ -13,3 +17,9 @@ nest generate <name it anything>
 nest generate posts
 nest generate tags
 nest generate users
+
+
+--create new controller via cli
+nest generate controller <name of the module>
+
+
