@@ -1,5 +1,6 @@
 import { Controller, Get, Post, Param, Query, Body } from '@nestjs/common';
 import { PlaygroundService } from './playground.service';
+import { IsPositivePipe } from './pipes/is-positive.pipe';
 @Controller('playground')
 export class PlaygroundController {
     constructor(private readonly playgroundService: PlaygroundService) {}
@@ -27,7 +28,7 @@ export class PlaygroundController {
     }
 
     @Get(':id')
-    findOne(@Param('id') id: string) {
-        return `this is ${id} data (single data)`
+    findOne(@Param('id', IsPositivePipe) id: string) {
+        return this.playgroundService.findDetails(id)
     }
 }

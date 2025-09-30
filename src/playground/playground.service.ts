@@ -10,4 +10,8 @@ export class PlaygroundService {
         //     message: 'this is featured data'
         // }
     }
+
+    findDetails(id: string) {
+        return `this is ${id} data (single data)`
+    }
 }

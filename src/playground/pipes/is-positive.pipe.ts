@@ -10,6 +10,11 @@ export class IsPositivePipe implements PipeTransform {
         if (value <= 0) {
             throw new BadRequestException('Value must be positive');
         }
+
+        if (isNaN(value)) {
+            throw new BadRequestException('Value must be a number');
+        }
+
         return value;
     }
 }
