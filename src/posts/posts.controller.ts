@@ -1,4 +1,14 @@
-import { Controller } from '@nestjs/common';
+import { Controller, Get, Post } from '@nestjs/common';
 
 @Controller('posts')
-export class PostsController {}
+export class PostsController {
+    @Get() 
+    findAll() {
+        return 'All posts';
+    }
+
+    @Post()
+    create() {
+        return 'Create post';
+    }
+}

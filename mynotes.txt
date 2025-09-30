@@ -12,11 +12,11 @@ nest new assesment2025-nestjs
 3) add api logic
 
 -- crewte new modules via cli
--- each module will have it ows decorators
-nest generate <name it anything>
-nest generate posts
-nest generate tags
-nest generate users
+-- each module will have it ows decorators (without controller)
+nest generate  module <name it anything>
+nest generate module posts
+nest generate module tags
+nest generate module users
 
 
 --create new controller via cli
