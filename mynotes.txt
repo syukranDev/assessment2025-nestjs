@@ -20,6 +20,13 @@ nest generate module users
 
 
 --create new controller via cli
+--buat sendiri pun ok if remember boilerplate 
 nest generate controller <name of the module>
+
+=========================================================
+provider (service) - its for API logic
+
+-- create new service
+nest generate service <name follow module>
 
 
