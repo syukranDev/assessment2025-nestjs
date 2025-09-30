@@ -13,6 +13,8 @@ export class PlaygroundController {
         return 'this is featured data'
     }
 
+
+
     @Post()
     create(@Body() body: any) {
         console.log(body) 
@@ -20,11 +22,8 @@ export class PlaygroundController {
 
     }
 
+    @Get(':id')
     findOne(@Param('id') id: string) {
         return `this is ${id} data (single data)`
     }
-
-
-
-
 }
