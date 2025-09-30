@@ -9,7 +9,7 @@ nest new assesment2025-nestjs
 // nestjs flow normally
 1) add module
 2) add controller
-3) add api logic
+3) add api logic via service
 
 -- crewte new modules via cli
 -- each module will have it ows decorators (without controller)
@@ -18,21 +18,33 @@ nest generate module posts
 nest generate module tags
 nest generate module users
 
+=========================================================
+CONTROLLER 
+=========================================================
 
 --create new controller via cli
 --buat sendiri pun ok if remember boilerplate 
 nest generate controller <name of the module>
 
+note: 
+-inside controller use dependency injection via constructor
+-use @Injectable in service, as below
+extra: 
+-PATTERN: can inject service from other module as well, then set in constructor
+to call it 
+
 =========================================================
-provider (service) - its for API logic
+PROVIDER (service) - its for API logic
+=========================================================
 
 -- create new service
 nest generate service <name follow module>
 
-
-
-
-
+=========================================================
+ERROR HANDLING
+=========================================================
+return new HttpException('data not found', 422)  -- boleh guna custom status code
+return new NotFoundException('data not found')  -- fix 404
 
 TODO learn implementation:
 CQRS - seperate write read operation
