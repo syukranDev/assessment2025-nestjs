@@ -52,6 +52,8 @@ Pipes (for data processing from client)
 -validate data at AFTER routing, before controller
 -NOTE: not same as Middleware expressjs, BEFORE routing
 
+-- better place in pipes folder as injectable, so that can be export
+
 i.e, ParseIntPipe, DefaultValuePipe etc see docs
 
 =========================================================
