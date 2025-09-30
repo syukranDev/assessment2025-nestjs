@@ -1,0 +1,15 @@
+30sept2025 tutorial reference: 
+https://www.youtube.com/watch?v=2gtiffE3__U
+
+npm i -g @nestjs/cli
+
+--creat new project
+nest new assesment2025-nestjs
+
+
+-- crewte new modules via cli
+-- each module will have it ows decorators
+nest generate <name it anything>
+nest generate posts
+nest generate tags
+nest generate users
