@@ -1,6 +1,6 @@
 
-30sept2025 tutorial reference: 
-https://www.youtube.com/watch?v=2gtiffE3__U
+revision nestjs 30sept2025 
+tutorial reference: https://www.youtube.com/watch?v=2gtiffE3__U
 
 npm i -g @nestjs/cli
 
@@ -70,6 +70,9 @@ Guards (like expressJS auth middleware)
 =========================================================
 apply to all  --> on top of controller
 apply to endpoint --> on top of @Get, @Post
+
+
+npm run db:generate -- src/database/migrations/add_users_and_user_profiles
 
 
 
