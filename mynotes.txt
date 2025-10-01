@@ -79,11 +79,14 @@ see package.json for script details
 
 
 
+=========================================================
+etc, findings 
+=========================================================
+-use forwrdRef if module A uses module B and module B use module B, 
+ to avoid circular dependency (thats new)
 
-
-
-
-
+-use JwtModule.registerASync to ensure .env finish uploaded, 
+ without this will be undefined at auth.module during runtimee
 
 
 TODO learn implementation:
