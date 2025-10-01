@@ -18,7 +18,10 @@ export class UsersService {
     ) {}
 
     async createNewUser(registerUserInput: RegisterUserDto): Promise<User>{
-        const existingUser = await this.userTable.findOne({ where: { username: registerUserInput.username } })
+        const existingUser = await this.userTable.findOne({ where: [
+            { username: registerUserInput.username },
+            { email: registerUserInput.email }
+        ] })
 
         if (existingUser) {
             throw new ConflictException('User already exists')
