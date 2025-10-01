@@ -1,4 +1,4 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn, ManyToMany, ManyToOne } from "typeorm";
+import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn, ManyToMany, ManyToOne, JoinTable } from "typeorm";
 import { Tag } from "../../tags/entities/tags.entity";
 import { User } from "../../users/entities/user.entity";
 
@@ -10,11 +10,11 @@ export class Post {
     @Column()
     title: string;
 
-    @Column({ unique: true })
+    @Column()
     description: string;
 
     @Column()
-    created_by: number;
+    created_by: string;
 
     @CreateDateColumn()
     created_at: Date;
@@ -23,6 +23,7 @@ export class Post {
     updated_at: Date;
 
     @ManyToMany(() => Tag, tag => tag.posts)
+    @JoinTable()
     tags: Tag[];
 
     @ManyToOne(() => User, user => user.posts)

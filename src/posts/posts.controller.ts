@@ -1,14 +1,21 @@
-import { Controller, Get, Post } from '@nestjs/common';
+import { Controller, Get, Post, Body } from '@nestjs/common';
+import { PostsService } from './posts.service';
+import { ValidationPipe } from '@nestjs/common';
+import { CreatePostDto } from './dto/createPost.dto';
 
 @Controller('posts')
 export class PostsController {
-    @Get() 
-    findAll() {
-        return 'All posts';
+    constructor(private readonly postsService: PostsService) {}
+
+    @Post('create')
+    createPost(@Body(ValidationPipe) createPostDto: CreatePostDto) {
+        let username = 'superadmin'
+        return this.postsService.createNewPost(username, createPostDto)
     }
 
-    @Post()
-    create() {
-        return 'Create post';
+    @Get('all')
+    getAllPosts() {
+        let username = 'superadmin'
+        return this.postsService.getAllPostsByUser(username)
     }
 }
