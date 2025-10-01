@@ -61,6 +61,9 @@ export class UsersService {
     }
 
     async updateUserProfileById(id: number, updateUserProfileInput: UpdateUserProfileDto): Promise<{ message: string}> {
+        const isUserExists = await this.userTable.findOne({ where: { id } })
+        if (!isUserExists) throw new NotFoundException('User not found')
+        
         const user = await this.userTable.findOneOrFail({
             where: { id },
             relations: ['profile']
