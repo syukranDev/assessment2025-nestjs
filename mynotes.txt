@@ -72,7 +72,12 @@ apply to all  --> on top of controller
 apply to endpoint --> on top of @Get, @Post
 
 
-npm run db:generate -- src/database/migrations/add_users_and_user_profiles
+npm run db:generate -- src/database/migrations/<name of the migration can be anthing>
+npm run db:run
+see package.json for script details
+
+
+
 
 
 

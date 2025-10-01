@@ -79,8 +79,7 @@ export class UsersService {
         return { message: 'User profile updated successfully' };
     }
 
-    // TODO laterrrr
-    // async loginUser(loginUserInput: LoginUserDto): Promise<User> {
-
-    // }
+    async findByUsername(username: string) {
+        return this.userTable.findOne({ where: { username }, relations: ['profile'] })
+    }
 }

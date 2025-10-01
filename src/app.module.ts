@@ -7,6 +7,7 @@ import { TagsModule } from './tags/tags.module';
 import { PlaygroundModule } from './playground/playground.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
+import { AuthModule } from './auth/auth.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -29,7 +30,7 @@ import { ConfigModule } from '@nestjs/config';
     PostsModule, 
     UsersModule, 
     TagsModule, 
-    PlaygroundModule,
+    PlaygroundModule, AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
