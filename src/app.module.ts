@@ -5,9 +5,32 @@ import { PostsModule } from './posts/posts.module';
 import { UsersModule } from './users/users.module';
 import { TagsModule } from './tags/tags.module';
 import { PlaygroundModule } from './playground/playground.module';
-
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { ConfigModule } from '@nestjs/config';
 @Module({
-  imports: [PostsModule, UsersModule, TagsModule, PlaygroundModule],
+  imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+      envFilePath: '.env',
+    }),
+    
+    TypeOrmModule.forRoot({
+      type: 'postgres',
+      host: process.env.DB_HOST,
+      port: 6543,
+      username: process.env.DB_USERNAME,
+      password: process.env.DB_PASSWORD,
+      database: process.env.DB_NAME,
+      entities: [__dirname + '/**/*.entity{.ts,.js}'],
+      synchronize: true, 
+      logging: true,
+    }),
+    
+    PostsModule, 
+    UsersModule, 
+    TagsModule, 
+    PlaygroundModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
