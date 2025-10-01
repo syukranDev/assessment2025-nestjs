@@ -1,8 +1,9 @@
-import { Controller, Get, Post, Param, Query, Body } from '@nestjs/common';
+import { UseGuards,Controller, Get, Post, Param, Query, Body } from '@nestjs/common';
 import { PlaygroundService } from './playground.service';
 import { IsPositivePipe } from './pipes/is-positive.pipe';
 import { ValidationPipe } from '@nestjs/common';
 import { CreateDataDto } from './dto/create-data.dto';
+import { ApiKeyGuard } from '../guards/api-key.guard';
 @Controller('playground')
 export class PlaygroundController {
     constructor(private readonly playgroundService: PlaygroundService) {}
@@ -22,6 +23,7 @@ export class PlaygroundController {
 
 
     //POST http://localhost:3000/playground
+    @UseGuards(ApiKeyGuard)
     @Post() //
     create(@Body(ValidationPipe) input: CreateDataDto) {
         // console.log(body) 

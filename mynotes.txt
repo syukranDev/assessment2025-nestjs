@@ -1,3 +1,4 @@
+
 30sept2025 tutorial reference: 
 https://www.youtube.com/watch?v=2gtiffE3__U
 
@@ -62,6 +63,13 @@ class validator for typescript DTO &&  ValidationPipe
 pros: reject invalid data with 400 error
 -validate our decorator
 - without ValidationPipe, decorator we set will be useless
+
+
+=========================================================
+Guards (like expressJS auth middleware)
+=========================================================
+apply to all  --> on top of controller
+apply to endpoint --> on top of @Get, @Post
 
 
 
