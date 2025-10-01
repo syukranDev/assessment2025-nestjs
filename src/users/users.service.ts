@@ -81,4 +81,9 @@ export class UsersService {
 
         return { message: 'User profile updated successfully' };
     }
+
+    // TODO laterrrr
+    // async loginUser(loginUserInput: LoginUserDto): Promise<User> {
+
+    // }
 }

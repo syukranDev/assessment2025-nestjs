@@ -1,5 +1,6 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn , OneToOne } from "typeorm";
+import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn , OneToOne, OneToMany } from "typeorm";
 import { UserProfile } from "./userProfile.entity";
+import { Post } from "../../posts/entities/posts.entity";
 @Entity('users')
 export class User {
     @PrimaryGeneratedColumn()
@@ -22,4 +23,7 @@ export class User {
 
     @OneToOne(() => UserProfile, userProfile => userProfile.user)
     profile?: UserProfile
+
+    @OneToMany(() => Post, post => post.user)
+    posts: Post[];
 }
