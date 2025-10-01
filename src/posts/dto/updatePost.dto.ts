@@ -1,4 +1,4 @@
-import { IsString, IsEmail, MinLength, MaxLength, Matches, IsArray} from 'class-validator';
+import { IsString, IsEmail, MinLength, MaxLength, IsOptional, IsArray} from 'class-validator';
 
 export class UpdatePostDto {
     @IsString({message: 'Title must be a string'})
@@ -10,6 +10,7 @@ export class UpdatePostDto {
     description: string
 
     @IsArray()
+    @IsOptional()
     tags: string[]
 }
 

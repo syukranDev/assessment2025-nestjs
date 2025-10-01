@@ -79,5 +79,18 @@ export class PostsService {
 
         return { status: 'success', message: 'Post updated successfully' }
     }
+
+    async deletePostByUser(username: string, postId: number): Promise<{status: string, message: string}> {
+        const user = await this.userTable.findOne({ where: { username }})
+        if (!user) throw new NotFoundException('User not found')
+
+        const post = await this.postTable.findOne({ where: { id: postId, created_by: username }})
+        if (!post) throw new NotFoundException('Post not found')
+        
+        await this.postTable.delete(postId)
+        
+        return { status: 'success', message: 'Post deleted successfully' }
+    }
+
   
 }
