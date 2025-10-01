@@ -18,14 +18,11 @@ export class UsersService {
     ) {}
 
     async createNewUser(registerUserInput: RegisterUserDto): Promise<User>{
-        const existingUser = await this.userTable.findOne({ where: [
-            { username: registerUserInput.username },
-            { email: registerUserInput.email }
-        ] })
-
-        if (existingUser) {
-            throw new ConflictException('User already exists')
-        }
+        const existingUser = await this.userTable.findOne({ where: { username: registerUserInput.username } })
+        if (existingUser) throw new ConflictException('Username already exists')
+        
+        const existingEmail = await this.userTable.findOne({ where: { email: registerUserInput.email } })
+        if (existingEmail) throw new ConflictException('Email already exists')
 
         const hashedPassword = await bcrypt.hash(registerUserInput.password, 10)
 
