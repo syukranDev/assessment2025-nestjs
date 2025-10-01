@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { User } from './entities/user.entity';
@@ -6,6 +6,7 @@ import { UserProfile } from './entities/userProfile.entity';
 import { RegisterUserDto } from './dto/registerUser.dto';
 import { ConflictException } from '@nestjs/common';
 import * as bcrypt from 'bcrypt'
+import { UpdateUserProfileDto } from './dto/updateUser.dto';
 
 @Injectable()
 export class UsersService {
@@ -28,6 +29,7 @@ export class UsersService {
         const user = this.userTable.create({
             username: registerUserInput.username,
             password: hashedPassword,
+            email: registerUserInput.email
         })
 
         const savedUser = await this.userTable.save(user)
@@ -46,5 +48,31 @@ export class UsersService {
             relations: ['profile']
         });
 
+    }
+
+    async getUserById(id: number): Promise<User> {
+        return this.userTable.findOneOrFail({
+            where: { id },
+            relations: ['profile']
+        });
+    }
+
+    async updateUserProfileById(id: number, updateUserProfileInput: UpdateUserProfileDto): Promise<{ message: string}> {
+        const user = await this.userTable.findOneOrFail({
+            where: { id },
+            relations: ['profile']
+        });
+
+        if (user.profile) {
+            await this.profileTable.update(user.profile.id, updateUserProfileInput);
+        } else {
+            const profile = this.profileTable.create({
+                user: user,
+                ...updateUserProfileInput
+            });
+            await this.profileTable.save(profile);
+        }
+
+        return { message: 'User profile updated successfully' };
     }
 }
