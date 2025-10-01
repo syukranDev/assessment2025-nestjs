@@ -1,7 +1,7 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
-
+import { OneToOne, Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn, JoinColumn } from "typeorm";
+import { User } from "./user.entity";
 @Entity('user_profiles')
-export class User {
+export class UserProfile {
     @PrimaryGeneratedColumn()
     id: number;
 
@@ -19,4 +19,8 @@ export class User {
 
     @UpdateDateColumn()
     updated_at: Date;
+
+    @OneToOne(() => User, user => user.profile)
+    @JoinColumn()
+    user: User
 }
