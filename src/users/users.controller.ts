@@ -22,4 +22,9 @@ export class UsersController {
     updateUserProfile(@Param('id') id: number, @Body(ValidationPipe) updateUserProfileInput: UpdateUserProfileDto) {
         return this.usersService.updateUserProfileById(id, updateUserProfileInput)
     }
+
+    @Get('profile/:id')
+    getUserProfile(@Param('id') id: number) {
+        return this.usersService.getUserProfileById(id)
+    }
 }

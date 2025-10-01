@@ -53,7 +53,7 @@ export class UsersService {
 
     }
 
-    async getUserById(id: number): Promise<User> {
+    async getUserProfileById(id: number): Promise<User> {
         return this.userTable.findOneOrFail({
             where: { id },
             relations: ['profile']
