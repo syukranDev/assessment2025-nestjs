@@ -7,6 +7,7 @@ export class CreatePostDto {
     title: string
 
     @IsString()
+    @MinLength(3, {message: 'description must be at least 5 char'})
     description: string
 
     @IsArray()
