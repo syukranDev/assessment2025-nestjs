@@ -106,9 +106,12 @@ etc, findings
 
 - ?? user login no need QRCS lah..cus its service belong in Auth but controller at users
 
+- GraphQL
+* code first approach (easier to maintain, less file lol) - just share the same typeorm entities and add the graphl decorator 
+* add resolver (query + mutation)
 
 TODO learn implementation:
-GraphQL -
+[] GraphQL -
 
 
 
