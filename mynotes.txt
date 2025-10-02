@@ -89,8 +89,16 @@ etc, findings
  without this will be undefined at auth.module during runtimee
 
 
+- CQRS - seperate write & read operation
+* npm install @nestjs/cqrs
+* command handler - for WRITE operation
+* query handler - for READ operation
+
+* IMPROTANT: in controller, the commandBus payload must match ordering likw what stated in command file
+
+
+
 TODO learn implementation:
-CQRS - seperate write read operation
 GraphQL -
 
 

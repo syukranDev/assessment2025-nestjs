@@ -4,10 +4,15 @@ import { ValidationPipe } from '@nestjs/common';
 import { CreatePostDto } from './dto/createPost.dto';
 import { UpdatePostDto } from './dto/updatePost.dto';
 import { JwtAuthGuard } from 'src/guards/jwt-auth.guard';
+import { CommandBus } from '@nestjs/cqrs';
+import { CreatePostCommand } from './commands/create-post.command';
 
 @Controller('posts')
 export class PostsController {
-    constructor(private readonly postsService: PostsService) {}
+    constructor(
+        private readonly postsService: PostsService,
+        private readonly commandBus: CommandBus,
+    ) {}
 
     @UseGuards(JwtAuthGuard)
     @Post('create')
@@ -15,7 +20,13 @@ export class PostsController {
         // let username = 'superadmin'
         let username = req.user.username;
 
-        return this.postsService.createNewPost(username, createPostDto)
+        // return this.postsService.createNewPost(username, createPostDto) --- notedev: old way using service 
+        return this.commandBus.execute(new CreatePostCommand( // notedev: new using CQRS pattern
+            username, 
+            createPostDto.title,
+            createPostDto.description,
+            createPostDto.tags
+        ))
     }
 
     @UseGuards(JwtAuthGuard)
