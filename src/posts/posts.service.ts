@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, NotFoundException, ForbiddenException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { In, Repository } from 'typeorm';
 import { Post } from './entities/posts.entity';
@@ -60,6 +60,7 @@ export class PostsService {
         if (!user) throw new NotFoundException('User not found')
 
         const post = await this.postTable.findOne({ where: { id: postId, created_by: username }, relations: ['tags']})
+        if (post?.created_by !== username) throw new ForbiddenException('Update post is not allowedd, you are not the owner of this post')
         if (!post) throw new NotFoundException('Post not found')
 
         let tagsArray: Tag[] = []
@@ -85,6 +86,7 @@ export class PostsService {
         if (!user) throw new NotFoundException('User not found')
 
         const post = await this.postTable.findOne({ where: { id: postId, created_by: username }})
+        if (post?.created_by !== username) throw new ForbiddenException('Deletee is not allowed, you are not the owner of this post')
         if (!post) throw new NotFoundException('Post not found')
         
         await this.postTable.delete(postId)
