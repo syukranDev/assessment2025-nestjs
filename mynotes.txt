@@ -95,7 +95,7 @@ etc, findings
 * query handler - for READ operation
 
 * IMPROTANT: in controller, the commandBus payload must match ordering likw what stated in command file
-
+* IMPORTANT: commands must follow DTO i.e optional etc
 
 
 TODO learn implementation:

@@ -6,14 +6,23 @@ import { User } from './entities/user.entity';
 import { UserProfile } from './entities/userProfile.entity';
 import { AuthModule } from 'src/auth/auth.module';
 import { forwardRef } from '@nestjs/common';
+import { CqrsModule } from '@nestjs/cqrs';
+import { RegisterUserHandler } from './commands/handlers/register-user.handler';
+import { UpdateUserProfileHandler } from './commands/handlers/update-user-profile.handler';
 
 @Module({
   imports: [
+    CqrsModule,
     TypeOrmModule.forFeature([User, UserProfile]), 
     forwardRef(() => AuthModule)
   ],
   controllers: [UsersController],
-  providers: [UsersService],
+  providers: [
+    UsersService,
+
+    RegisterUserHandler,
+    UpdateUserProfileHandler,
+  ],
   exports: [UsersService, TypeOrmModule] // notedev: pakai untuk auth module later
 })
 export class UsersModule {}

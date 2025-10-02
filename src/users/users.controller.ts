@@ -6,13 +6,16 @@ import { UpdateUserProfileDto } from './dto/updateUser.dto';
 import { LoginUserDto } from 'src/auth/dto/loginUser.dto';
 import { AuthService } from 'src/auth/auth.service';
 import { JwtAuthGuard } from 'src/guards/jwt-auth.guard';
-
+import { CommandBus } from '@nestjs/cqrs';
+import { RegisterUserCommand } from './commands/register-user.command';
+import { UpdateUserProfileCommand } from './commands/update-user-profile.command';
 
 @Controller('users')
 export class UsersController {
     constructor(
         private readonly usersService: UsersService,
-        private readonly authService: AuthService
+        private readonly authService: AuthService,
+        private readonly commandBus: CommandBus
     ) {}
 
     @Get()
@@ -27,13 +30,26 @@ export class UsersController {
 
     @Post('register')
     create(@Body(ValidationPipe) registerUserInput: RegisterUserDto) {
-        return this.usersService.createNewUser(registerUserInput)
+        return this.commandBus.execute(new RegisterUserCommand(
+            registerUserInput.username, 
+            registerUserInput.email, 
+            registerUserInput.password
+        ))
+
+        // return this.usersService.createNewUser(registerUserInput)
     }
 
     @UseGuards(JwtAuthGuard)
     @Patch('update/:id')
     updateUserProfile(@Param('id') id: number, @Body(ValidationPipe) updateUserProfileInput: UpdateUserProfileDto) {
-        return this.usersService.updateUserProfileById(id, updateUserProfileInput)
+        return this.commandBus.execute(new UpdateUserProfileCommand(
+            id, 
+            updateUserProfileInput.first_name, 
+            updateUserProfileInput.last_name, 
+            updateUserProfileInput.age
+        ))
+
+        // return this.usersService.updateUserProfileById(id, updateUserProfileInput)
     }
 
     @Get('profile/:id')
