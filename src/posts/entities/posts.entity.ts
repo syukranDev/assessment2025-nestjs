@@ -23,7 +23,7 @@ export class Post {
     updated_at: Date;
 
     @ManyToMany(() => Tag, tag => tag.posts)
-    @JoinTable()
+    @JoinTable({ name: 'PostTags'})
     tags: Tag[];
 
     @ManyToOne(() => User, user => user.posts)

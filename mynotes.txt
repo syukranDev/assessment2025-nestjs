@@ -98,6 +98,12 @@ etc, findings
 * IMPORTANT: commands must follow DTO i.e optional etc
 
 
+- joining table name
+* by defalt it will use tableA-tableB, so need to name it using @JoinTable({name: 'new name goes here'})
+* @JoinTable() ---> new tablename become "post-tags"
+* @JoinTable({name : 'PostTags'}) ---> new tablename become "PostTags"
+
+
 TODO learn implementation:
 GraphQL -
 
