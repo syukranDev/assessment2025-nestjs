@@ -104,6 +104,9 @@ etc, findings
 * @JoinTable({name : 'PostTags'}) ---> new tablename become "PostTags"
 
 
+- ?? user login no need QRCS lah..cus its service belong in Auth but controller at users
+
+
 TODO learn implementation:
 GraphQL -
 

@@ -6,16 +6,18 @@ import { UpdateUserProfileDto } from './dto/updateUser.dto';
 import { LoginUserDto } from 'src/auth/dto/loginUser.dto';
 import { AuthService } from 'src/auth/auth.service';
 import { JwtAuthGuard } from 'src/guards/jwt-auth.guard';
-import { CommandBus } from '@nestjs/cqrs';
+import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import { RegisterUserCommand } from './commands/register-user.command';
 import { UpdateUserProfileCommand } from './commands/update-user-profile.command';
+import { GetUserProfileQuery } from './queries/get-user-profile.query';
 
 @Controller('users')
 export class UsersController {
     constructor(
         private readonly usersService: UsersService,
         private readonly authService: AuthService,
-        private readonly commandBus: CommandBus
+        private readonly commandBus: CommandBus,
+        private readonly queryBus: QueryBus
     ) {}
 
     @Get()
@@ -54,6 +56,8 @@ export class UsersController {
 
     @Get('profile/:id')
     getUserProfile(@Param('id') id: number) {
-        return this.usersService.getUserProfileById(id)
+        return this.queryBus.execute(new GetUserProfileQuery(id))
+
+        // return this.usersService.getUserProfileById(id)
     }
 }

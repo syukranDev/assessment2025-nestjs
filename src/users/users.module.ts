@@ -9,6 +9,7 @@ import { forwardRef } from '@nestjs/common';
 import { CqrsModule } from '@nestjs/cqrs';
 import { RegisterUserHandler } from './commands/handlers/register-user.handler';
 import { UpdateUserProfileHandler } from './commands/handlers/update-user-profile.handler';
+import { GetUserProfileHandler } from './queries/handlers/get-user-profile.handler';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { UpdateUserProfileHandler } from './commands/handlers/update-user-profil
 
     RegisterUserHandler,
     UpdateUserProfileHandler,
+    GetUserProfileHandler,
   ],
   exports: [UsersService, TypeOrmModule] // notedev: pakai untuk auth module later
 })
