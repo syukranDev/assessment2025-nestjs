@@ -14,7 +14,6 @@ export class AuthService {
         private readonly jwt: JwtService
     ) {}
 
-    // TODO laterrrr
     async loginUser(loginUserInput: LoginUserDto): Promise<{}> {
 
         const user = await this.UsersService.findByUsername(loginUserInput.username)
