@@ -4,6 +4,7 @@ import { User } from "../../users/entities/user.entity";
 import { Field, ObjectType,ID, Int } from '@nestjs/graphql';
 
 @Entity('posts')
+@ObjectType()
 export class Post {
     @PrimaryGeneratedColumn()
     @Field(() => ID)

@@ -1,0 +1,81 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+input CreatePostDto {
+  description: String!
+  tags: [String!]!
+  title: String!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Mutation {
+  createPost(input: CreatePostDto!, username: String!): String!
+  createUser(input: RegisterUserDto!): User!
+  deletePost(id: Int!, username: String!): String!
+  updatePost(id: Int!, input: UpdatePostDto!, username: String!): String!
+  updateUserProfile(id: Int!, input: UpdateUserProfileDto!): String!
+}
+
+type Post {
+  created_at: DateTime!
+  created_by: String!
+  description: String!
+  id: ID!
+  tags: [Tag!]
+  title: String!
+  updated_at: DateTime!
+  user: User!
+}
+
+type Query {
+  posts(username: String!): [Post!]!
+  user(id: Int!): User!
+}
+
+input RegisterUserDto {
+  email: String!
+  password: String!
+  username: String!
+}
+
+type Tag {
+  created_at: DateTime!
+  id: ID!
+  name: String!
+  updated_at: DateTime!
+}
+
+input UpdatePostDto {
+  description: String!
+  tags: [String!]!
+  title: String!
+}
+
+input UpdateUserProfileDto {
+  age: Int!
+  first_name: String!
+  last_name: String!
+}
+
+type User {
+  created_at: DateTime!
+  email: String!
+  id: ID!
+  profile: UserProfile!
+  updated_at: DateTime!
+  username: String!
+}
+
+type UserProfile {
+  age: Int!
+  created_at: DateTime!
+  first_name: String!
+  id: ID!
+  last_name: String!
+  updated_at: DateTime!
+}
