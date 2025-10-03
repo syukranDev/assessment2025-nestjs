@@ -1,10 +1,13 @@
 import { IsString, IsEmail, MinLength, MaxLength, Matches} from 'class-validator';
+import { Field, InputType } from '@nestjs/graphql';
 
+@InputType()
 export class RegisterUserDto {
     @IsString()
     @MinLength(6, {message: 'Username should be least 6 characterslong'})
     @MaxLength(20, {message: 'Username should be less than 20 characters'})
     @Matches(/^[a-zA-Z0-9]+$/, {message: 'Username should only contain letters and numbers'})
+    @Field()
     username: string
 
     @IsString()
@@ -13,10 +16,12 @@ export class RegisterUserDto {
     @Matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]/, {
         message: 'Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character (@$!%*?&)'
     })
+    @Field()
     password: string
 
     @IsString()
     @IsEmail({}, {message: 'Please provide a valid email format with @'})
+    @Field()
     email: string
 }
 
