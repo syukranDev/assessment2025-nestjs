@@ -24,10 +24,13 @@
     "db:show": "typeorm-ts-node-commonjs migration:show -d src/database/db-migration-config.ts"
   },
   "dependencies": {
+    "@apollo/server": "^5.0.0",
+    "@nestjs/apollo": "^13.2.1",
     "@nestjs/common": "^11.0.1",
     "@nestjs/config": "^4.0.2",
     "@nestjs/core": "^11.0.1",
     "@nestjs/cqrs": "^11.0.3",
+    "@nestjs/graphql": "^13.2.0",
     "@nestjs/jwt": "^11.0.0",
     "@nestjs/passport": "^11.0.5",
     "@nestjs/platform-express": "^11.0.1",
@@ -35,6 +38,7 @@
     "bcrypt": "^6.0.0",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.2",
+    "graphql": "^16.11.0",
     "passport": "^0.7.0",
     "passport-jwt": "^4.0.1",
     "pg": "^8.16.3",
