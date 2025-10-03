@@ -12,17 +12,17 @@ import { In, Repository } from "typeorm";
 export class CreatePostHandler implements ICommandHandler<CreatePostCommand> {
     constructor(
       @InjectRepository(Post)
-      private readonly postRepository: Repository<Post>,
+      private readonly postTable: Repository<Post>,
       @InjectRepository(Tag)
-      private readonly tagRepository: Repository<Tag>,
+      private readonly tagTable: Repository<Tag>,
       @InjectRepository(User)
-      private readonly userRepository: Repository<User>,
+      private readonly userTable: Repository<User>,
     ) {}
 
     async execute(command: CreatePostCommand): Promise<{status: string, message: string}> {
         const { username, title, description, tags } = command;
     
-        const user = await this.userRepository.findOne({ where: { username }});
+        const user = await this.userTable.findOne({ where: { username }});
         if (!user) throw new NotFoundException('User not found');
         
         // notedev: 
@@ -30,13 +30,13 @@ export class CreatePostHandler implements ICommandHandler<CreatePostCommand> {
         // tag need to be added manually in add tag API
         let tagsArray: Tag[] = [];
         if (tags) {
-          tagsArray = await this.tagRepository.find({ where: { name: In(tags) } });
+          tagsArray = await this.tagTable.find({ where: { name: In(tags) } });
           if (tagsArray.length !== tags.length) {
             throw new NotFoundException('Tags not exists, please create tag first');
           }
         }
     
-        const post = this.postRepository.create({
+        const post = this.postTable.create({
           title,
           description,
           tags: tagsArray,
@@ -44,7 +44,7 @@ export class CreatePostHandler implements ICommandHandler<CreatePostCommand> {
           created_by: username,
         });
     
-        await this.postRepository.save(post);
+        await this.postTable.save(post);
     
         return { status: 'success', message: 'Post created successfully' };
       }
