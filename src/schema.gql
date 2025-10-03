@@ -8,6 +8,10 @@ input CreatePostDto {
   title: String!
 }
 
+input CreateTagDto {
+  name: String!
+}
+
 """
 A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
 """
@@ -15,6 +19,7 @@ scalar DateTime
 
 type Mutation {
   createPost(input: CreatePostDto!, username: String!): String!
+  createTag(input: CreateTagDto!): Tag!
   createUser(input: RegisterUserDto!): User!
   deletePost(id: Int!, username: String!): String!
   updatePost(id: Int!, input: UpdatePostDto!, username: String!): String!
@@ -34,6 +39,7 @@ type Post {
 
 type Query {
   posts(username: String!): [Post!]!
+  tags: [Tag!]!
   user(id: Int!): User!
 }
 
