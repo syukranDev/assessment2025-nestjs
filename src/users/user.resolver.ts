@@ -42,12 +42,14 @@ export class UsersResolver {
     @Args('id', { type: () => Int }) id: number,
     @Args('input') updateUserInput: UpdateUserProfileDto
   ) {
-    return this.commandBus.execute(new UpdateUserProfileCommand(
+    const result = await this.commandBus.execute(new UpdateUserProfileCommand(
         id, 
         updateUserInput.first_name, 
         updateUserInput.last_name, 
         updateUserInput.age
-    ))
+    ));
+    
+    return result.message;
 
     //return (await this.usersService.updateUserProfileById(id, updateUserInput))?.message; // notedev: this old way via sercvice
   }

@@ -31,12 +31,14 @@ export class PostsResolver {
     @Args('username') username: string,
     @Args('input') createPostInput: CreatePostDto
   ) {
-    return this.commandBus.execute(new CreatePostCommand(
+    const result = await this.commandBus.execute(new CreatePostCommand(
       username,
       createPostInput.title,
       createPostInput.description,
       createPostInput.tags
-    ))
+    ));
+    
+    return result.message;
     // const result = await this.postsService.createNewPost(username, createPostInput);
     // return result.message;
   }
@@ -47,13 +49,15 @@ export class PostsResolver {
     @Args('id', { type: () => Int }) id: number,
     @Args('input') updatePostInput: UpdatePostDto
   ) {
-    return this.commandBus.execute(new UpdatePostCommand(
+    const result = await this.commandBus.execute(new UpdatePostCommand(
       username,
       id,
       updatePostInput.title,
       updatePostInput.description,
       updatePostInput.tags
-    ))
+    ));
+    
+    return result.message;
 
     // const result = await this.postsService.updatePostByUser(username, id, updatePostInput);
     // return result.message;
@@ -64,10 +68,12 @@ export class PostsResolver {
     @Args('username') username: string,
     @Args('id', { type: () => Int }) id: number
   ) {
-    return this.commandBus.execute(new DeletePostCommand(
+    const result = await this.commandBus.execute(new DeletePostCommand(
       username,
       id
-    ))
+    ));
+    
+    return result.message;
     // const result = await this.postsService.deletePostByUser(username, id);
     // return result.message;
   }
