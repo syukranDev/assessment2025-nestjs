@@ -40,3 +40,22 @@ Go to `http://localhost:3000/graphql` to test queries directly in browser
 
 ## Postman 
 Or use postman collection raw code i shared in the codebase (filename : `TBA`), you might need to change to localhost base url if you wish to setup on your own..
+
+## My findings when learning
+
+### CQRS stuffs
+- command handler for WRITE operations, query handler for READ operations
+- commandBus payload must match ordering like what stated in command file
+- commands must follow DTO i.e optional etc
+
+### random
+- use forwardRef if module A uses module B and module B use module A, to avoid circular dependency
+- use JwtModule.registerAsync to ensure .env finish uploaded, without this will be undefined at auth.module during runtime
+- joining table name: by default it will use tableA-tableB, so need to name it using @JoinTable({name: 'new name goes here'})
+- @JoinTable() --> new tablename become "post-tags"
+- @JoinTable({name : 'PostTags'}) --> new tablename become "PostTags"
+
+### graphql stuffss
+- code first approach (easier to maintain, less file lol) - just share the same typeorm entities and add the graphql decorator
+- add resolver (query + mutation)
+- user login no need CQRS lah..cus its service belong in Auth but controller at users
