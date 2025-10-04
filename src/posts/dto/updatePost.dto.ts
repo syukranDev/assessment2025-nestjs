@@ -14,7 +14,7 @@ export class UpdatePostDto {
 
     @IsArray()
     @IsOptional()
-    @Field(() => [String])
-    tags: string[]
+    @Field(() => [String], {nullable: true})
+    tags?: string[]
 }
 

@@ -3,6 +3,6 @@ export class CreatePostCommand {
         public readonly username: string,
         public readonly title: string,
         public readonly description: string,
-        public readonly tags: string[],
+        public readonly tags?: string[],
     ){}
 }

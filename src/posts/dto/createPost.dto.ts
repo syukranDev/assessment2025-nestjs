@@ -15,7 +15,7 @@ export class CreatePostDto {
 
     @IsArray()
     @IsOptional()
-    @Field(() => [String])
-    tags: string[]
+    @Field(() => [String], {nullable: true})
+    tags?: string[]
 }
 

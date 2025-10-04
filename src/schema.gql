@@ -4,7 +4,7 @@
 
 input CreatePostDto {
   description: String!
-  tags: [String!]!
+  tags: [String!]
   title: String!
 }
 
@@ -69,14 +69,14 @@ type Tag {
 
 input UpdatePostDto {
   description: String!
-  tags: [String!]!
+  tags: [String!]
   title: String!
 }
 
 input UpdateUserProfileDto {
-  age: Int!
-  first_name: String!
-  last_name: String!
+  age: Int
+  first_name: String
+  last_name: String
 }
 
 type User {
