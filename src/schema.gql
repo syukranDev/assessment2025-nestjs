@@ -17,11 +17,22 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 """
 scalar DateTime
 
+type LoginResponseDto {
+  access_token: String!
+  user: User!
+}
+
+input LoginUserDto {
+  password: String!
+  username: String!
+}
+
 type Mutation {
   createPost(input: CreatePostDto!, username: String!): String!
   createTag(input: CreateTagDto!): Tag!
   createUser(input: RegisterUserDto!): User!
   deletePost(id: Int!, username: String!): String!
+  login(input: LoginUserDto!): LoginResponseDto!
   updatePost(id: Int!, input: UpdatePostDto!, username: String!): String!
   updateUserProfile(id: Int!, input: UpdateUserProfileDto!): String!
 }
