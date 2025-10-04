@@ -28,13 +28,13 @@ input LoginUserDto {
 }
 
 type Mutation {
-  createPost(input: CreatePostDto!, username: String!): String!
+  createPost(input: CreatePostDto!): String!
   createTag(input: CreateTagDto!): Tag!
   createUser(input: RegisterUserDto!): User!
-  deletePost(id: Int!, username: String!): String!
+  deletePost(id: Int!): String!
   login(input: LoginUserDto!): LoginResponseDto!
-  updatePost(id: Int!, input: UpdatePostDto!, username: String!): String!
-  updateUserProfile(id: Int!, input: UpdateUserProfileDto!): String!
+  updatePost(id: Int!, input: UpdatePostDto!): String!
+  updateUserProfile(input: UpdateUserProfileDto!): String!
 }
 
 type Post {
@@ -49,9 +49,9 @@ type Post {
 }
 
 type Query {
-  posts(username: String!): [Post!]!
+  posts: [Post!]!
   tags: [Tag!]!
-  user(id: Int!): User!
+  user: User!
 }
 
 input RegisterUserDto {

@@ -10,6 +10,7 @@ import { UpdatePostCommand } from './commands/update-post.command';
 import { DeletePostCommand } from './commands/delete-post.command';
 import { UseGuards } from '@nestjs/common';
 import { GraphqlJwtAuthGuard } from 'src/guards/graphql-auth.guard';
+import { CurrentUser } from 'src/auth/logged-in-user.decorator';
 
 @UseGuards(GraphqlJwtAuthGuard)
 @Resolver(() => Post)
@@ -20,19 +21,19 @@ export class PostsResolver {
     private readonly commandBus: CommandBus,
 ) {}
 
-@Query(() => [Post], { name: 'posts' })
-  async getPosts(@Args('username') username: string) {
-    return this.queryBus.execute(new GetUserPostsQuery(username))
-    // return this.postsService.getAllPostsByUser(username);
+  @Query(() => [Post], { name: 'posts' })
+    async getPosts(@CurrentUser() user: any) {
+        return this.queryBus.execute(new GetUserPostsQuery(user.username))
+        // return this.postsService.getAllPostsByUser(username);
   }
 
   @Mutation(() => String)
   async createPost(
-    @Args('username') username: string,
+    @CurrentUser() user: any,
     @Args('input') createPostInput: CreatePostDto
   ) {
     const result = await this.commandBus.execute(new CreatePostCommand(
-      username,
+      user.username,
       createPostInput.title,
       createPostInput.description,
       createPostInput.tags
@@ -45,12 +46,12 @@ export class PostsResolver {
 
   @Mutation(() => String)
   async updatePost(
-    @Args('username') username: string,
+    @CurrentUser() user: any,
     @Args('id', { type: () => Int }) id: number,
     @Args('input') updatePostInput: UpdatePostDto
   ) {
     const result = await this.commandBus.execute(new UpdatePostCommand(
-      username,
+      user.username,
       id,
       updatePostInput.title,
       updatePostInput.description,
@@ -65,11 +66,11 @@ export class PostsResolver {
 
   @Mutation(() => String)
   async deletePost(
-    @Args('username') username: string,
+    @CurrentUser() user: any,
     @Args('id', { type: () => Int }) id: number
   ) {
     const result = await this.commandBus.execute(new DeletePostCommand(
-      username,
+      user.username,
       id
     ));
     

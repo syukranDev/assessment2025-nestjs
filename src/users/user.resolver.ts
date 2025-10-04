@@ -9,6 +9,7 @@ import { RegisterUserCommand } from './commands/register-user.command';
 import { UpdateUserProfileCommand } from './commands/update-user-profile.command';
 import { UseGuards } from '@nestjs/common';
 import { GraphqlJwtAuthGuard } from 'src/guards/graphql-auth.guard';
+import { CurrentUser } from 'src/auth/logged-in-user.decorator';
 
 @Resolver(() => User)
 export class UsersResolver {
@@ -20,8 +21,8 @@ export class UsersResolver {
 
   @UseGuards(GraphqlJwtAuthGuard)
   @Query(() => User, { name: 'user' })
-  async getUser(@Args('id', { type: () => Int }) id: number) {
-    return this.queryBus.execute(new GetUserProfileQuery(id))
+  async getUser(@CurrentUser() user: any) {
+    return this.queryBus.execute(new GetUserProfileQuery(user.id))
     // return this.usersService.getUserProfileById(id); // notedev: this old way via sercvice
   }
 
@@ -39,11 +40,11 @@ export class UsersResolver {
   @UseGuards(GraphqlJwtAuthGuard)
   @Mutation(() => String)
   async updateUserProfile(
-    @Args('id', { type: () => Int }) id: number,
+    @CurrentUser() user: any,
     @Args('input') updateUserInput: UpdateUserProfileDto
   ) {
     const result = await this.commandBus.execute(new UpdateUserProfileCommand(
-        id, 
+        user.id, 
         updateUserInput.first_name, 
         updateUserInput.last_name, 
         updateUserInput.age
