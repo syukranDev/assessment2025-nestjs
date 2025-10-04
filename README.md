@@ -2,7 +2,9 @@
 
 Simple CRUD API with GraphQL. You can create users, posts, tags. Has JWT tokenn so you need to login first to get the token, token is set to 1hour on purpose.
 
-You can test using my own instance (<URL TBA>) or you can as setup below 
+## PROD Deployment (Railway)
+- **Live API**: `https://assessment2025-nestjs-production.up.railway.app/graphql`
+- **Note**: first requet might takes awhile, please wait for server to wake up due to free tier instance...
 
 ## Setup Steps
 
@@ -39,7 +41,7 @@ Server will run on `http://localhost:3000`
 Go to `http://localhost:3000/graphql` to test queries directly in browser
 
 ## Postman 
-Or use postman collection raw code i shared in the codebase (filename : `TBA`), you might need to change to localhost base url if you wish to setup on your own..
+Or use postman collection raw code i shared in the codebase (filename : `Assesment Webby NestJS-Grapql - Syukran Soleh.postman_collection.json`), you might need to change to localhost base url if you wish to setup on your own..
 
 ## My findings when learning
 
