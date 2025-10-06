@@ -3,8 +3,7 @@
 Simple CRUD API with GraphQL. You can create users, posts, tags. Has JWT tokenn so you need to login first to get the token, token is set to 1hour on purpose.
 
 ## PROD Deployment (Railway)
-- **Live API**: `https://assessment2025-nestjs-production.up.railway.app/graphql`
-- **Note**: first requet might takes awhile, please wait for server to wake up due to free tier instance...
+- **Live API**: [https://assessmentwebby.syukrandev.com/graphql](https://assessmentwebby.syukrandev.com/graphql)
 
 ## Setup Steps
 
