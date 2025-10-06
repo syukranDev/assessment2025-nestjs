@@ -332,7 +332,7 @@
 	"variable": [
 		{
 			"key": "baseUrl",
-			"value": "https://assessment2025-nestjs-production.up.railway.app",
+			"value": "https://assessmentwebby.syukrandev.com",
 			"type": "string"
 		},
 		{
