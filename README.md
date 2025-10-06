@@ -42,6 +42,9 @@ Go to `http://localhost:3000/graphql` to test queries directly in browser
 ## Postman 
 Or use postman collection raw code i shared in the codebase (filename : `Assesment Webby NestJS-Grapql - Syukran Soleh.postman_collection.json`), you might need to change to localhost base url if you wish to setup on your own..
 
+## DB ERD Diagram
+<img width="1217" height="992" alt="image" src="https://github.com/user-attachments/assets/390a42a9-bb2b-44b0-b440-2fa62609f60b" />
+
 ## My findings when learning
 
 ### CQRS stuffs
