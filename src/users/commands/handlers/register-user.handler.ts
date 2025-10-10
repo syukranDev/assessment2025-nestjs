@@ -20,15 +20,18 @@ export class RegisterUserHandler implements ICommandHandler<RegisterUserCommand>
     async execute(command: RegisterUserCommand): Promise<User> {
         const { username, password, email } = command;
 
+        console.log({username, password, email});
         const existingUser = await this.userTable.findOne({ where: { username } });
         if (existingUser) throw new ConflictException('username already exists');
         
         
         const existingEmail = await this.userTable.findOne({ where: { email } });
+        console.log(existingEmail);
         if (existingEmail) throw new ConflictException('email already existss');
         
 
         const hashedPassword = await bcrypt.hash(password, 10);
+
 
         const user = this.userTable.create({
             username,
