@@ -2,7 +2,7 @@
 
 Simple CRUD API with GraphQL. You can create users, posts, tags. Has JWT tokenn so you need to login first to get the token, token is set to 1hour on purpose.
 
-## PROD Deployment (Railway)
+## PROD Deployment
 - **Live API**: [https://assessmentwebby.syukrandev.com/graphql](https://assessmentwebby.syukrandev.com/graphql)
 
 ## Setup Steps
@@ -42,7 +42,11 @@ Go to `http://localhost:3000/graphql` to test queries directly in browser
 ## Postman 
 Or use postman collection raw code i shared in the codebase (filename : `Assesment Webby NestJS-Grapql - Syukran Soleh.postman_collection.json`), you might need to change to localhost base url if you wish to setup on your own..
 
+## DB ERD Diagram
+<img width="1217" height="992" alt="image" src="https://github.com/user-attachments/assets/390a42a9-bb2b-44b0-b440-2fa62609f60b" />
+
 ## My findings when learning
+PS: raw in mynotes.txt
 
 ### CQRS stuffs
 - command handler for WRITE operations, query handler for READ operations
@@ -60,3 +64,4 @@ Or use postman collection raw code i shared in the codebase (filename : `Assesme
 - code first approach (easier to maintain, less file lol) - just share the same typeorm entities and add the graphql decorator
 - add resolver (query + mutation)
 - user login no need CQRS lah..cus its service belong in Auth but controller at users
+
